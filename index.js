@@ -7,7 +7,7 @@ checkWhoWon = [
 ]
 
 
-let nnum = Number(prompt("How many rounds do you wanna play?: "));
+// let nnum = Number(prompt("How many rounds do you wanna play?: "));
 
 const getComputerChoice = () =>{
     let val = Number(prompt("Input a number"));
@@ -17,7 +17,7 @@ const getComputerChoice = () =>{
     console.log(val)
 }
 
-for (let i = 0; i < nnum; i++){
-    getComputerChoice();
-}
+// for (let i = 0; i < nnum; i++){
+//     getComputerChoice();
+// }
 

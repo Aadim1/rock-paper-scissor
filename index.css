@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: hsl(214, 47%, 23%);
+}
+
+
+
+.paper, .scissor, .rock{
+    display: flex;
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 50%;
+    border: 20px solid hsl(230, 89%, 62%);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 10px rgb(77, 77, 77);
+}
+
+.rock{
+    border-color: hsl(349, 71%, 52%);
+}
+
+.scissor{
+    border-color: hsl(39, 89%, 49%);
+}
+
+
+.score p{
+    color: hsl(229, 25%, 31%);
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header{
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid hsl(217, 16%, 45%);
+    border-radius: 20px;
+    padding: 10px;
+    margin: 20px;
+}
+
+.header .score{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    border: 1px solid white;
+    background-color: white;
+    border-radius: 10%;
+    margin: 0;
+}
+
+.header .score p{
+    margin: 0;
+    margin-top: 5px;
+    color: hsl(217, 16%, 45%);
+    font-size: 20px;
+}
+.header .score .num{
+    margin: 0;
+    font-size: 60px;
+    margin-bottom: 5px;
+}
+
+.triangle{
+    position: absolute; 
+    z-index: 1;
+    margin-top: 350px
+}
+
+.gameplay{
+    position: absolute;
+    z-index: 2;
+    margin-top: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.gameplay .top{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 60px;
+}
+
+.gameplay .bottom{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+@media screen and (max-width: 600px){
+    * {
+        background-color: lightblue;
+    }
+}
+
