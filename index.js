@@ -1,3 +1,23 @@
+const rules = document.querySelector('.container');
+const btn = document.querySelector('.btns');
+const closeBtn = document.querySelector('.rules .close');
+
+console.log(btn)
+btn.addEventListener('click', () => {
+    rules.style.display = "flex";
+    rules.classList.add("container-show");
+});
+
+closeBtn.addEventListener('click', () => {
+    rules.classList.add("container-hide");
+    setTimeout(() => {
+        rules.style.display= 'none';
+        rules.classList.remove("container-show", "container-hide");
+    }, 200);
+});
+
+
+
 
 
 checkWhoWon = [
@@ -20,4 +40,6 @@ const getComputerChoice = () =>{
 // for (let i = 0; i < nnum; i++){
 //     getComputerChoice();
 // }
+
+
 
