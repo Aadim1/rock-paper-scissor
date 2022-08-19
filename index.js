@@ -1,6 +1,20 @@
 const rules = document.querySelector('.container');
 const btn = document.querySelector('.btns');
 const closeBtn = document.querySelector('.rules .close');
+const main = document.querySelector('body');
+
+const paper = document.querySelector('.paper');
+const scissor = document.querySelector('.scissor');
+const rock = document.querySelector('.rock');
+
+console.log(main);
+main.addEventListener('click', () => {
+    rules.style.add("container-hide");
+    setTimeout(() => {
+        rules.style.display= 'none';
+        rules.classList.remove("container-show", "container-hide");
+    }, 200);
+});
 
 console.log(btn)
 btn.addEventListener('click', () => {
