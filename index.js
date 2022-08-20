@@ -1,6 +1,8 @@
-if ("Who will win".includes("win")){
-    console.log(true)
-}
+checkWhoWon = [
+    ["It's a tie", "You loose! Paper beats rock", "You win! Rock beats scissor"],
+    ["You win! Paper beats rock", "It's a Tie", "You loose! Scissor beats paper"],
+    ["You loose! Rock beats scissor", "You win! Scissor beats paper", "It's a tie"]
+]
 
 
 const rules = document.querySelector('.container');
@@ -9,11 +11,23 @@ const closeBtn = document.querySelector('.rules .close');
 const bodyImage = document.querySelector('.triangle');
 const gameplay = document.querySelector('.gameplay');
 const main = document.querySelector('.main');
+const startOver = document.querySelector('.startOver');
+
+
+let score = 0;
+
+
+startOver.addEventListener('click', () => {
+    score = 0;
+    document.querySelector('.num').textContent = score;
+});
+
 
 // bodyImage.style.display = "none";
-// gameplay.style.display = "none";
+// gameplay😆.style.display = "none";
 
-
+let playerElement = document.createElement('div');
+let computerElement = document.createElement('div');
 
 
 
@@ -24,31 +38,110 @@ const rock = document.querySelector('.rock1');
 const paperClone = paper.cloneNode(true);
 const scissorClone = scissor.cloneNode(true);
 const rockClone = rock.cloneNode(true);
+
 const whoWon = document.createElement('div');
+const playerPicked = document.createElement('div');
+const computerPicked = document.createElement('div');
 whoWon.classList.add("whoWon");
-main.appendChild(whoWon);
-
 whoWon.classList.add("gameplay");
-whoWon.setAttribute('style', "flex-direction: row; gap:350px; padding: 10px;")
+whoWon.setAttribute('style', "flex-direction: row; gap:350px; padding: 10px;");
+main.appendChild(whoWon);
+whoWon.appendChild(playerPicked);
+whoWon.appendChild(computerPicked);
+// whoWon.style.display = "none";
 
-whoWon.appendChild(paperClone);
-whoWon.appendChild(scissorClone);
+
+whoWon.style.display = "none";
+const youPicked = document.createElement('p');
+youPicked.textContent = "YOU PICKED";
+const computer = document.createElement('p');
+computer.textContent = "COMPUTER PICKED";
+
+playerPicked.appendChild(youPicked);
+playerPicked.appendChild(playerElement);
+
+computerPicked.appendChild(computer);
+computerPicked.appendChild(computerElement);
+
+youPicked.classList.add("center");
+computer.classList.add("center");
+whoWon.lastElementChild.lastElementChild.style["margin-left"] = "10px";
+
+
+const checker = () => {
+    bodyImage.style.display = "none";
+    gameplay.style.display = "none";
+    whoWon.style.display = "flex";
+    showWhoWon.style.display = "inline";
+
+    console.log(whoWon.firstElementChild)
+    whoWon.firstElementChild.replaceChild(playerElement, whoWon.firstElementChild.lastElementChild);
+    console.log(playerElement)
+    // playerPicked.appendChild(playerElement);
+
+    // computerPicked.appendChild(computer);
+    // computerPicked.appendChild(computerElement);
+    whoWon.lastElementChild.replaceChild(computerElement, whoWon.lastElementChild.lastElementChild);
+
+
+
+
+    youPicked.classList.add("center");
+    computer.classList.add("center");
+    whoWon.lastElementChild.lastElementChild.style["margin-left"] = "10px";
+}
+
+
+const showWhoWon = document.createElement('p');
+main.appendChild(showWhoWon);
+
 
 
 let playerChoice;
 let computerChoice;
 
-const getComputerChoice = () =>{
+const startAgain = () => {
+    bodyImage.style.display = "inline";
+    gameplay.style.display = "flex";
+    whoWon.style.display = "none";
+    showWhoWon.style.display = "none";
+};
+
+const getComputerChoice = (className) =>{
     computerChoice = Math.floor((Math.random() * 3));
-    alert(checkWhoWon[playerChoice-1][computerChoice]);
-    console.log(playerChoice-1);
-    console.log(computerChoice);
+    winOrLoose = checkWhoWon[playerChoice-1][computerChoice];
+    showWhoWon.textContent = winOrLoose;
+
+    if (winOrLoose.includes("win")){
+        score += 1;
+    }else{
+        if (score > 0){
+            score -= 1;
+        }
+    };
+    console.log(score)
+    document.querySelector('.num').textContent = score;
+    showWhoWon.classList.add("showWhoWon");
+    console.log(className)
+    playerElement = document.querySelector(`.${className}`).cloneNode(true);
+    if (computerChoice == 0){
+        computerElement = rockClone;
+    }else if (computerChoice == 1){
+        computerElement = paperClone;
+    }else{
+        computerElement = scissorClone;
+    }
+
+    console.log(computerElement, playerElement)
+    checker();
+    setTimeout(startAgain, 1000);
 }
 
+
+
 const whoClicked = (className) =>{
-    console.log(className);
     playerChoice = parseInt(String(className).substring(String(className).length-1));
-    getComputerChoice();
+    getComputerChoice(className);
 }
 
 paper.addEventListener('click', () => {whoClicked(paper.className)});
@@ -98,11 +191,7 @@ mediaQuery();
 
 
 
-checkWhoWon = [
-    ["It's a tie", "You loose! Paper beats rock", "You win! Rock beats scissor"],
-    ["You win! Paper beats rock", "It's a Tie", "You loose! Scissor beats paper"],
-    ["You loose! Rock beats scissor", "You win! Scissor beats paper", "It's a tie"]
-]
+
 
 
 // let nnum = Number(prompt("How many rounds do you wanna play?: "));
