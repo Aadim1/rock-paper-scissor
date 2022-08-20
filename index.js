@@ -1,20 +1,64 @@
+if ("Who will win".includes("win")){
+    console.log(true)
+}
+
+
 const rules = document.querySelector('.container');
 const btn = document.querySelector('.btns');
 const closeBtn = document.querySelector('.rules .close');
-const main = document.querySelector('body');
+const bodyImage = document.querySelector('.triangle');
+const gameplay = document.querySelector('.gameplay');
+const main = document.querySelector('.main');
 
-const paper = document.querySelector('.paper');
-const scissor = document.querySelector('.scissor');
-const rock = document.querySelector('.rock');
+// bodyImage.style.display = "none";
+// gameplay.style.display = "none";
 
-console.log(main);
-main.addEventListener('click', () => {
-    rules.style.add("container-hide");
-    setTimeout(() => {
-        rules.style.display= 'none';
-        rules.classList.remove("container-show", "container-hide");
-    }, 200);
-});
+
+
+
+
+const paper = document.querySelector('.paper2');
+const scissor = document.querySelector('.scissor3');
+const rock = document.querySelector('.rock1');
+
+const paperClone = paper.cloneNode(true);
+const scissorClone = scissor.cloneNode(true);
+const rockClone = rock.cloneNode(true);
+const whoWon = document.createElement('div');
+whoWon.classList.add("whoWon");
+main.appendChild(whoWon);
+
+whoWon.classList.add("gameplay");
+whoWon.setAttribute('style', "flex-direction: row; gap:350px; padding: 10px;")
+
+whoWon.appendChild(paperClone);
+whoWon.appendChild(scissorClone);
+
+
+let playerChoice;
+let computerChoice;
+
+const getComputerChoice = () =>{
+    computerChoice = Math.floor((Math.random() * 3));
+    alert(checkWhoWon[playerChoice-1][computerChoice]);
+    console.log(playerChoice-1);
+    console.log(computerChoice);
+}
+
+const whoClicked = (className) =>{
+    console.log(className);
+    playerChoice = parseInt(String(className).substring(String(className).length-1));
+    getComputerChoice();
+}
+
+paper.addEventListener('click', () => {whoClicked(paper.className)});
+
+rock.addEventListener('click', () => {whoClicked(rock.className)});
+
+scissor.addEventListener('click', () => {whoClicked(scissor.className)});
+
+
+
 
 console.log(btn)
 btn.addEventListener('click', () => {
@@ -31,6 +75,26 @@ closeBtn.addEventListener('click', () => {
 });
 
 
+const mediaQuery = () => {
+    console.log(window.screen.width)
+    if (window.screen.width > 680){
+        console.log("hello");
+        whoWon.style.gap = "300px";
+    }
+    else if (window.screen.width < 400){
+        whoWon.style.gap = `45px`;
+    }
+    else{
+        whoWon.style.gap = `${window.screen.width - 350 - 40}px`
+    }
+}
+
+window.addEventListener('resize', () => {
+    mediaQuery();
+});
+
+mediaQuery();
+
 
 
 
@@ -43,17 +107,9 @@ checkWhoWon = [
 
 // let nnum = Number(prompt("How many rounds do you wanna play?: "));
 
-const getComputerChoice = () =>{
-    let val = Number(prompt("Input a number"));
-    const computerChoice = Math.floor((Math.random() * 2)) + 1;
-    alert(checkWhoWon[val][computerChoice]);
-    console.log(computerChoice);
-    console.log(val)
-}
 
-// for (let i = 0; i < nnum; i++){
-//     getComputerChoice();
-// }
+
+
 
 
 

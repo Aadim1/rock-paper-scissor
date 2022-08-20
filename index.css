@@ -11,11 +11,12 @@ body {
     margin: 0;
     padding: 0;
     background-color: hsl(214, 47%, 23%);
+    margin-right: 5%;
 }
 
 
 
-.paper, .scissor, .rock{
+.paper2, .scissor3, .rock1{
     display: flex;
     width: 100px;
     height: 100px;
@@ -30,11 +31,11 @@ body {
     cursor: pointer;
 }
 
-.rock{
+.rock1{
     border-color: hsl(349, 71%, 52%);
 }
 
-.scissor{
+.scissor3{
     border-color: hsl(39, 89%, 49%);
 }
 
@@ -90,6 +91,7 @@ body {
     margin-top: 350px
 }
 
+
 .gameplay{
     position: absolute;
     padding: 5px;
@@ -101,7 +103,7 @@ body {
 
 }
 
-.paper:active, .scissor:active, .rock:active{
+.paper2:active, .scissor3:active, .rock1:active{
     position: relative;
     top: 1px;
 }
@@ -202,4 +204,10 @@ body {
         width: 90%;
     }
 }
+
+/* @media screen and (max-width: 500px){
+    .whoWon{
+        width: 90%;
+    }
+} */
 
