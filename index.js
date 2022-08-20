@@ -114,7 +114,7 @@ const getComputerChoice = (className) =>{
 
     if (winOrLoose.includes("win")){
         score += 1;
-    }else{
+    }else if (winOrLoose.includes("loose")){
         if (score > 0){
             score -= 1;
         }
@@ -171,7 +171,6 @@ closeBtn.addEventListener('click', () => {
 const mediaQuery = () => {
     console.log(window.screen.width)
     if (window.screen.width > 680){
-        console.log("hello");
         whoWon.style.gap = "300px";
     }
     else if (window.screen.width < 400){
