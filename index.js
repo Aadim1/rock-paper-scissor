@@ -6,16 +6,22 @@ checkWhoWon = [
 
 
 const rules = document.querySelector('.container');
+const close = document.querySelector(".close");
 const btn = document.querySelector('.btns');
 const closeBtn = document.querySelector('.rules .close');
 const bodyImage = document.querySelector('.triangle');
 const gameplay = document.querySelector('.gameplay');
 const main = document.querySelector('.main');
 const startOver = document.querySelector('.startOver');
+rules.style.display = "none";
+
 
 
 let score = 0;
 
+close.addEventListener('click', () => {
+    rules.style.display = "none";
+})
 
 startOver.addEventListener('click', () => {
     score = 0;
@@ -49,10 +55,11 @@ whoWon.setAttribute('style', "flex-direction: row; gap:350px; padding: 10px;");
 main.appendChild(whoWon);
 whoWon.appendChild(playerPicked);
 whoWon.appendChild(computerPicked);
+whoWon.style.display = "none"
 // whoWon.style.display = "none";
 
 
-whoWon.style.display = "flex";
+// whoWon.style.display = "flex";
 whoWon.classList.add("fadeOut");
 const youPicked = document.createElement('p');
 youPicked.textContent = "YOU PICKED";
@@ -82,6 +89,11 @@ const checker = () => {
     whoWon.classList.add("fadeIn");
     showWhoWon.classList.add("fadeIn");
 
+    bodyImage.style.display = "none";
+    gameplay.style.display = "none";
+    whoWon.style.display = "flex";
+    showWhoWon.style.display = "flex";
+
     console.log(whoWon.firstElementChild)
     whoWon.firstElementChild.replaceChild(playerElement, whoWon.firstElementChild.lastElementChild);
     console.log(playerElement)
@@ -101,6 +113,7 @@ const checker = () => {
 
 
 const showWhoWon = document.createElement('p');
+showWhoWon.style.display = "none";
 main.appendChild(showWhoWon);
 showWhoWon.textContent = "You Win!! Paper beats rock";
 showWhoWon.style.opacity = 0;
@@ -115,12 +128,16 @@ const startAgain = () => {
     gameplay.classList.remove("fadeOut");
     bodyImage.classList.add("fadeIn");
     gameplay.classList.add("fadeIn");
-    
+    bodyImage.style.display = "flex";
+    gameplay.style.display = "flex";
 
+    
     whoWon.classList.remove("fadeIn");
     showWhoWon.classList.remove("fadeIn");
     whoWon.classList.add("fadeOut");
     showWhoWon.classList.add("fadeOut");
+    whoWon.style.display = "none";
+    showWhoWon.style.display = "none";
 };
 
 const getComputerChoice = (className) =>{
@@ -147,7 +164,9 @@ const getComputerChoice = (className) =>{
         computerElement = scissorClone;
     }
 
-    console.log(computerElement, playerElement)
+    console.log(computerElement, playerElement);
+    
+
     checker();
     setTimeout(startAgain, 3000);
 }

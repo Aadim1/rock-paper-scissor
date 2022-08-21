@@ -203,6 +203,7 @@ body {
     flex-direction: row;
     width: 350px;
     align-items: center;
+    margin-top: 100px;
 }
 
 .rules .close{
