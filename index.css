@@ -169,6 +169,14 @@ body {
     animation: fadeOut 0.2s ease-in-out forwards;
 }
 
+.fadeIn{
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.fadeOut{
+    animation: fadeOut 0.2s ease-in-out forwards;
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;

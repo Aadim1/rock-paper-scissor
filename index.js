@@ -20,6 +20,7 @@ let score = 0;
 startOver.addEventListener('click', () => {
     score = 0;
     document.querySelector('.num').textContent = score;
+    startAgain();
 });
 
 
@@ -51,7 +52,8 @@ whoWon.appendChild(computerPicked);
 // whoWon.style.display = "none";
 
 
-whoWon.style.display = "none";
+whoWon.style.display = "flex";
+whoWon.classList.add("fadeOut");
 const youPicked = document.createElement('p');
 youPicked.textContent = "YOU PICKED";
 const computer = document.createElement('p');
@@ -69,10 +71,16 @@ whoWon.lastElementChild.lastElementChild.style["margin-left"] = "10px";
 
 
 const checker = () => {
-    bodyImage.style.display = "none";
-    gameplay.style.display = "none";
-    whoWon.style.display = "flex";
-    showWhoWon.style.display = "inline";
+    bodyImage.classList.remove("fadeIn");
+    gameplay.classList.remove("fadeIn");
+    bodyImage.classList.add("fadeOut");
+    gameplay.classList.add("fadeOut");
+
+
+    whoWon.classList.remove("fadeOut");
+    showWhoWon.classList.remove("fadeOut");
+    whoWon.classList.add("fadeIn");
+    showWhoWon.classList.add("fadeIn");
 
     console.log(whoWon.firstElementChild)
     whoWon.firstElementChild.replaceChild(playerElement, whoWon.firstElementChild.lastElementChild);
@@ -94,17 +102,25 @@ const checker = () => {
 
 const showWhoWon = document.createElement('p');
 main.appendChild(showWhoWon);
-
+showWhoWon.textContent = "You Win!! Paper beats rock";
+showWhoWon.style.opacity = 0;
+showWhoWon.classList.add("showWhoWon");
 
 
 let playerChoice;
 let computerChoice;
 
 const startAgain = () => {
-    bodyImage.style.display = "inline";
-    gameplay.style.display = "flex";
-    whoWon.style.display = "none";
-    showWhoWon.style.display = "none";
+    bodyImage.classList.remove("fadeOut");
+    gameplay.classList.remove("fadeOut");
+    bodyImage.classList.add("fadeIn");
+    gameplay.classList.add("fadeIn");
+    
+
+    whoWon.classList.remove("fadeIn");
+    showWhoWon.classList.remove("fadeIn");
+    whoWon.classList.add("fadeOut");
+    showWhoWon.classList.add("fadeOut");
 };
 
 const getComputerChoice = (className) =>{
@@ -121,7 +137,6 @@ const getComputerChoice = (className) =>{
     };
     console.log(score)
     document.querySelector('.num').textContent = score;
-    showWhoWon.classList.add("showWhoWon");
     console.log(className)
     playerElement = document.querySelector(`.${className}`).cloneNode(true);
     if (computerChoice == 0){
@@ -134,7 +149,7 @@ const getComputerChoice = (className) =>{
 
     console.log(computerElement, playerElement)
     checker();
-    setTimeout(startAgain, 1000);
+    setTimeout(startAgain, 3000);
 }
 
 
@@ -162,7 +177,7 @@ btn.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
     rules.classList.add("container-hide");
     setTimeout(() => {
-        rules.style.display= 'none';
+        rules.classList.add("fadeOut")
         rules.classList.remove("container-show", "container-hide");
     }, 200);
 });
